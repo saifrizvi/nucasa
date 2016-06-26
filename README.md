@@ -1,2 +1,0 @@
-# nucasa
-Nucasa Auction Service
