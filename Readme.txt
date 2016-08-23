@@ -4,6 +4,8 @@ Steps to install and run the code
 2. Go to project root and run following maven commmand to build the code:
 	mvn clean install
 3. Go to project root and run following command to deploy and run the api on your localhost port 8080
+	mvn spring-boot:run 
+	[OR]
 	java -jar target/nook-casa-service-1.0.jar
 4. Test Following API calls in your browser or a client
 	1. List All Properties - http://localhost:8080/properties
