@@ -1,6 +1,6 @@
 package com.nookcasa.vo;
 
-import static com.nookcasa.utils.ApplicationConstants.DEFAULT_USER_ID;
+import static com.nookcasa.utils.ApplicationConstants.*;
 
 import com.nookcasa.interfaces.KeyedItem;
 
@@ -10,15 +10,14 @@ public class PropertyBid implements KeyedItem{
 	private long propertyId ;
 	private int noOfTenants;
 	private double bidPrice;
-	private long userId;
+	private String userId;
 	private String proposal;
 
-	public PropertyBid(long propertyId, int noOfTenants, double bidPrice) {
+	public PropertyBid(long propertyId, String userId, double bidPrice) {
 		this.propertyId=propertyId;
 		this.bidPrice=bidPrice;
-		this.noOfTenants=noOfTenants;
-		this.userId = DEFAULT_USER_ID;
-
+		this.noOfTenants=DEFAULT_MAX_NO_OF_TENANTS;
+		this.userId = userId;
 	} 
 
 	@Override
@@ -38,10 +37,30 @@ public class PropertyBid implements KeyedItem{
 		return bidPrice;
 	}
 	
-	public long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 	
+	public void setPropertyId(long propertyId) {
+		this.propertyId = propertyId;
+	}
+
+	public void setNoOfTenants(int noOfTenants) {
+		this.noOfTenants = noOfTenants;
+	}
+
+	public void setBidPrice(double bidPrice) {
+		this.bidPrice = bidPrice;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setProposal(String proposal) {
+		this.proposal = proposal;
+	}
+
 	public String getProposal() {
 		return proposal;
 	}

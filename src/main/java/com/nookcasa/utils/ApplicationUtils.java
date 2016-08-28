@@ -1,6 +1,7 @@
 package com.nookcasa.utils;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -43,10 +44,34 @@ public class ApplicationUtils {
 
 	  }
 	
+	public static String getDefaultBidEndDateAsString() {
+
+		   DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		  
+		   //get current date time with Calendar()
+		   Calendar cal = Calendar.getInstance();
+		   cal.add(Calendar.DAY_OF_MONTH, 3);
+		   return dateFormat.format(cal.getTime());
+
+	  }
+	
 	public static Date getCurrentDateAsDate() {
 		   //get current date time with Calendar()
 		   Calendar cal = Calendar.getInstance();
 		   return cal.getTime();
+	  }
+	
+	public static long getStringDateAsTimeInMilliseconds(String date, String format){
+		DateFormat dateFormat = new SimpleDateFormat(format);
+		Date dt;
+		Calendar calendar = Calendar.getInstance();
+		try {
+			dt = dateFormat.parse(date);
+			calendar.setTime(dt);
+		} catch (ParseException e) {
+			System.out.println("Error while parsing date in App Utils");
+		}
+		return calendar.getTimeInMillis();
 	  }
 
 	public static Date getFutureDateAsDate(int futureDays) {

@@ -1,14 +1,16 @@
 package com.nookcasa.dao;
 
-import static com.nookcasa.utils.ApplicationConstants.DEFAULT_BID_END_DATE;
-import static com.nookcasa.utils.ApplicationConstants.DEFAULT_MAX_NO_OF_TENANTS;
+import static com.nookcasa.utils.ApplicationConstants.*;
+import static com.nookcasa.utils.ApplicationUtils.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.nookcasa.vo.Property;
+import org.springframework.util.StringUtils;
+
 import com.nookcasa.exceptions.DataException;
+import com.nookcasa.vo.Property;
 
 public class PropertyDAO extends BaseDAO {
 
@@ -27,10 +29,15 @@ public class PropertyDAO extends BaseDAO {
 		return properties;
 	}
 
-	public Property addProperty(double startBidPrice) throws DataException {
+	public Property addProperty(Property request) throws DataException {
 		Property property;
 		try {
-			property = new Property(generateNextPropertyId(),DEFAULT_MAX_NO_OF_TENANTS, startBidPrice,DEFAULT_BID_END_DATE);
+			int maxTenants = (request.getMaxTenants() > 0) ? request.getMaxTenants() : DEFAULT_MAX_NO_OF_TENANTS;
+			double startPrice = (request.getStartBidPrice() > 0) ? request.getStartBidPrice() : DEFAULT_START_BID_PRICE;
+			String endDateTime = (!StringUtils.isEmpty(request.getEndDateTime())) ? request.getEndDateTime() : getDefaultBidEndDateAsString();
+			String description = (!StringUtils.isEmpty(request.getDescription())) ? request.getDescription() : DEFAULT_DESCRIPTION;
+			String address = (!StringUtils.isEmpty(request.getAddress())) ? request.getAddress() : DEFAULT_ADDRESS;
+			property = new Property(generateNextPropertyId(),maxTenants,startPrice,endDateTime,description, address);
 			propertyDataSource.add(property);
 		} catch (Exception e) {
 			throw new DataException("Exception while adding property to data store");
@@ -52,8 +59,7 @@ public class PropertyDAO extends BaseDAO {
 	}
 
 	public Property getPropertyById(long propertyId) throws DataException {
-		Property returnPro = new Property(-1, DEFAULT_MAX_NO_OF_TENANTS, 0.0,
-				DEFAULT_BID_END_DATE);
+		Property returnPro = new Property();
 		try {
 			for (Property property : propertyDataSource) {
 				if (property.getPropertyId() == propertyId) {

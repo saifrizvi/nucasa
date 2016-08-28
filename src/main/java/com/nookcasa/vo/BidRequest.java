@@ -4,16 +4,16 @@ public class BidRequest {
 
 	private long propertyId;
 	private double price;
-	private int noOfTenants;
+	private String userId;
 	private String proposal;
 	
 	public BidRequest() {
 	}
 	
-	public BidRequest(long propertyId, double price, int noOfTenants, String proposal) {
+	public BidRequest(long propertyId, double price, String userId, String proposal) {
 		this.propertyId = propertyId;
 		this.price = price;
-		this.noOfTenants = noOfTenants;
+		this.userId = userId;
 		this.proposal = proposal;
 	}
 
@@ -25,8 +25,24 @@ public class BidRequest {
 		return price;
 	}
 
-	public int getNoOfTenants() {
-		return noOfTenants;
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public void setPropertyId(long propertyId) {
+		this.propertyId = propertyId;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public void setProposal(String proposal) {
+		this.proposal = proposal;
 	}
 
 	public String getProposal() {

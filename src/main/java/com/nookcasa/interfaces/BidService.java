@@ -8,15 +8,15 @@ import com.nookcasa.vo.Property;
 import com.nookcasa.vo.PropertyBid;
 
 
-public interface 	BidService {
+public interface BidService {
 
 	public List<Property> listAllProperties();
 
-	public Property addProperty(double startBidPrice) throws DataException;
+	public Property addProperty(Property property) throws DataException;
 	
 	public boolean removeProperty(long propertyId) throws DataException;
 	
-	public boolean registerBid(long propertyId, double price, int noOfTenants, String proposal) throws InvalidParametersException, DataException;
+	public boolean registerBid(long propertyId, double price, String userId, String proposal) throws InvalidParametersException, DataException;
 	
 	public List<PropertyBid> getAllBids(long propertyId) throws InvalidParametersException;
 	
@@ -25,5 +25,7 @@ public interface 	BidService {
 	public long getTimeToBid(long propertyId) throws InvalidParametersException, DataException;
 
 	public double getStartBidPrice(long propertyId) throws InvalidParametersException, DataException;
+
+	public Property getPropertyDetails(long propertyId);
 
 }
