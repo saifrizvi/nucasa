@@ -11,17 +11,27 @@ public class Property implements KeyedItem{
 	private double startBidPrice;
 	private String endDateTime;
 	private String description;
+	private String title;
 	private String address;
 
-	public Property(long propertyId, int maxTenants, double bidPrice,String endDateTime, String description, String address) {
+	public Property(long propertyId, int maxTenants, double bidPrice,String endDateTime, String description, String address, String title) {
 		this.propertyId=propertyId;
 		this.startBidPrice =bidPrice;
 		this.maxTenants = maxTenants;
 		this.endDateTime=endDateTime;
 		this.description = description;
+		this.title = title;
 		this.address = address;
 	} 
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public Property(){
 	}
 
@@ -76,5 +86,14 @@ public class Property implements KeyedItem{
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	@Override
+	public String toString() {
+		return "Property [propertyId=" + propertyId + ", maxTenants="
+				+ maxTenants + ", startBidPrice=" + startBidPrice
+				+ ", endDateTime=" + endDateTime + ", description="
+				+ description + ", title=" + title + ", address=" + address
+				+ "]";
 	}
 }

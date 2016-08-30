@@ -36,8 +36,9 @@ public class PropertyDAO extends BaseDAO {
 			double startPrice = (request.getStartBidPrice() > 0) ? request.getStartBidPrice() : DEFAULT_START_BID_PRICE;
 			String endDateTime = (!StringUtils.isEmpty(request.getEndDateTime())) ? request.getEndDateTime() : getDefaultBidEndDateAsString();
 			String description = (!StringUtils.isEmpty(request.getDescription())) ? request.getDescription() : DEFAULT_DESCRIPTION;
+			String title = (!StringUtils.isEmpty(request.getTitle())) ? request.getTitle() : DEFAULT_TITLE;
 			String address = (!StringUtils.isEmpty(request.getAddress())) ? request.getAddress() : DEFAULT_ADDRESS;
-			property = new Property(generateNextPropertyId(),maxTenants,startPrice,endDateTime,description, address);
+			property = new Property(generateNextPropertyId(),maxTenants,startPrice,endDateTime,description, address, title);
 			propertyDataSource.add(property);
 		} catch (Exception e) {
 			throw new DataException("Exception while adding property to data store");

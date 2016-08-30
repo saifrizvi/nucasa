@@ -17,6 +17,8 @@ public class ApplicationConstants {
 	
 	public static final String DEFAULT_DESCRIPTION = "Description coming soon.";
 	
+	public static final String DEFAULT_TITLE = "Details coming soon.";
+	
 	public static final String DEFAULT_ADDRESS = "Address coming soon.";
 
 }
